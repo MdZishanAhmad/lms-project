@@ -1,6 +1,7 @@
 from django.db import models
 
 from courses.models import Course
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Lesson(models.Model):
@@ -11,6 +12,11 @@ class Lesson(models.Model):
     description = models.TextField(blank=True)
     video_url = models.URLField(max_length=500)
     order = models.PositiveIntegerField()
+    comments = GenericRelation(
+        "comments.Comment",
+        content_type_field="commentable_type",
+        object_id_field="commentable_id",
+    )
 
     class Meta:
         ordering = ["order", "id"]

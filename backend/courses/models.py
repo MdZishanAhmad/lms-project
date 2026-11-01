@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Category(models.Model):
@@ -30,7 +31,12 @@ class Course(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
+    comments = GenericRelation(
+        "comments.Comment",
+        content_type_field="commentable_type",
+        object_id_field="commentable_id",
+    )
     class Meta:
         ordering = ["-created_at"]
 
