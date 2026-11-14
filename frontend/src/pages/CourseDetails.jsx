@@ -82,7 +82,7 @@ export default function CourseDetails() {
       </div>
 
       {canSeeLessons ? (
-        <LessonList courseId={course.id} />
+<LessonList courseId={course.id} isOwner={isOwner} />
       ) : (
         <div className="card">
           <p className="muted">
