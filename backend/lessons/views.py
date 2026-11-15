@@ -16,10 +16,7 @@ from .serializers import LessonSerializer
 
 
 class LessonListCreateView(generics.ListCreateAPIView):
-    """
-    GET  /api/courses/<course_id>/lessons/  - lessons sorted by order
-    POST /api/courses/<course_id>/lessons/  - teacher adds a lesson
-    """
+  
 
     serializer_class = LessonSerializer
 
@@ -49,10 +46,7 @@ class LessonListCreateView(generics.ListCreateAPIView):
 
 
 class LessonDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """
-    GET             /api/lessons/<id>/  - enrolled student or owner teacher
-    PUT/PATCH/DELETE /api/lessons/<id>/ - owner teacher only
-    """
+   
 
     queryset = Lesson.objects.select_related("course")
     serializer_class = LessonSerializer

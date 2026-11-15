@@ -4,7 +4,6 @@ from courses.models import Course
 from lessons.models import Lesson
 from lessons.permissions import can_view_lessons
 
-# 6.3 The only types a comment can be attached to
 ALLOWED_TARGETS = {
     "course": Course,
     "lesson": Lesson,

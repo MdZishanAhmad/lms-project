@@ -10,7 +10,6 @@ def is_course_owner(user, course):
 
 
 def is_enrolled(user, course):
-    """A student with a non-cancelled enrollment in a published course."""
     return (
         user.role == User.Role.STUDENT
         and course.status == Course.Status.PUBLISHED
@@ -21,12 +20,10 @@ def is_enrolled(user, course):
 
 
 def can_view_lessons(user, course):
-    """5.4 Owner teacher, or an enrolled student."""
     return is_course_owner(user, course) or is_enrolled(user, course)
 
 
 class LessonAccess(BasePermission):
-    """Object-level rules for a single lesson."""
 
     message = "You do not have access to this lesson."
 

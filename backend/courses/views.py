@@ -24,12 +24,9 @@ class CourseViewSet(viewsets.ModelViewSet):
         queryset = Course.objects.select_related("category", "teacher")
 
         if self.action == "list":
-            # 3.4 published courses for all users
             return queryset.filter(status=Course.Status.PUBLISHED)
         if self.action == "my":
-            # 3.1 a teacher's own courses (draft + published)
             return queryset.filter(teacher=user)
-        # retrieve / update / delete: published courses, or the user's own drafts
         return queryset.filter(Q(status=Course.Status.PUBLISHED) | Q(teacher=user))
 
     def get_permissions(self):

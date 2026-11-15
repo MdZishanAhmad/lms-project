@@ -13,10 +13,7 @@ from .utils import check_can_access, get_target
 
 
 class CommentListCreateView(generics.ListCreateAPIView):
-    """
-    GET  /api/comments/?commentable_type=course&commentable_id=1  - list comments
-    POST /api/comments/                                           - add a comment
-    """
+   
 
     permission_classes = [IsAuthenticated]
     serializer_class = CommentSerializer
